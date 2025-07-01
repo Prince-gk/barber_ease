@@ -8,6 +8,10 @@ from passlib.context import CryptContext
 from pydantic import BaseModel
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from starlette.responses import FileResponse
+
 
 # FastAPI app
 app = FastAPI(title="BarberEase API")
@@ -26,6 +30,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 
 # Database configuration
 # DATABASE_URL = "postgresql://user:password@localhost:5432/barberease"
@@ -203,6 +209,26 @@ def init_db():
 def on_startup():
     init_db()
 
+
+# Serve the static assets (JS/CSS/images) at /static
+app.mount("/static", StaticFiles(directory="client/dist", html=True), name="static")
+
+# Serve index.html at root
+@app.get("/")
+def read_index():
+    return FileResponse("client/dist/index.html")
+
+# Fallback route for client-side routing (SPA)
+@app.get("/{full_path:path}")
+async def spa_fallback(full_path: str):
+    file_path = os.path.join("client", "dist", full_path)
+    
+    # If the file exists (e.g., /static/js/app.js), serve it directly
+    if os.path.exists(file_path) and not os.path.isdir(file_path):
+        return FileResponse(file_path)
+    
+    # Otherwise, fallback to index.html (SPA route)
+    return FileResponse("client/dist/index.html")
 
 # API Endpoints
 @app.post("/token", response_model=Token)
