@@ -32,7 +32,6 @@ app.add_middleware(
 )
 
 
-
 # Database configuration
 # DATABASE_URL = "postgresql://user:password@localhost:5432/barberease"
 
@@ -56,7 +55,7 @@ class User(SQLModel, table=True):
     email: str = Field(unique=True, index=True)
     hashed_password: str
     is_barber: bool = False
-    date_created: datetime|None = None
+    date_created: datetime | None = None
     full_name: str
     bio: Optional[str] = None
 
@@ -223,13 +222,14 @@ def on_startup():
 # @app.get("/{full_path:path}")
 # async def spa_fallback(full_path: str):
 #     file_path = os.path.join("client", "dist", full_path)
-    
+
 #     # If the file exists (e.g., /static/js/app.js), serve it directly
 #     if os.path.exists(file_path) and not os.path.isdir(file_path):
 #         return FileResponse(file_path)
-    
+
 #     # Otherwise, fallback to index.html (SPA route)
 #     return FileResponse("client/dist/index.html")
+
 
 # API Endpoints
 @app.post("/token", response_model=Token)

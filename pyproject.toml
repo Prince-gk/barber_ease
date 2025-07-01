@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Prince", email = "prince@gmail.com"},
 ]
-dependencies = ["fastapi[standard]>=0.115.14", "sqlmodel>=0.0.24", "python-jose>=3.5.0", "passlib>=1.7.4", "psycopg2>=2.9.10", "psycopg2-binary>=2.9.10", "honcho>=2.0.0", "uvicorn[standard]>=0.35.0", "gunicorn>=23.0.0", "alembic>=1.16.2", "aiofiles>=24.1.0"]
+dependencies = ["fastapi[standard]>=0.115.14", "sqlmodel>=0.0.24", "python-jose>=3.5.0", "passlib>=1.7.4",  "honcho>=2.0.0", "uvicorn[standard]>=0.35.0",  "alembic>=1.16.2", "aiofiles>=24.1.0"]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = {text = "MIT"}
