@@ -2,6 +2,10 @@
 
 #### BarberEase is a web application designed to streamline the process of booking and managing barber appointments. It provides a user-friendly interface for both customers and barbers, allowing for easy scheduling, profile management, and appointment tracking
 
+Backend -> <https://barber-ease.onrender.com/docs>
+
+Frontend -> <https://barber-ease.vercel.app/>
+
 ## Setup Instructions
 
 You need to have Python 3.10+ and Node.js >=22 installed on your machine.
