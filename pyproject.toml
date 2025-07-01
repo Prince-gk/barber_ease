@@ -1,0 +1,15 @@
+[project]
+name = "barber_ease"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Prince", email = "prince@gmail.com"},
+]
+dependencies = ["fastapi[standard]>=0.115.14", "sqlmodel>=0.0.24", "python-jose>=3.5.0", "passlib>=1.7.4", "psycopg2>=2.9.10", "psycopg2-binary>=2.9.10"]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
