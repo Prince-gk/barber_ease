@@ -6,12 +6,14 @@ from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
+from dotenv import load_dotenv
 import os
 from fastapi.middleware.cors import CORSMiddleware
 # from fastapi.staticfiles import StaticFiles
 # from fastapi.responses import FileResponse
 # from starlette.responses import FileResponse
 
+load_dotenv()
 
 # FastAPI app
 app = FastAPI(title="BarberEase API")
@@ -35,7 +37,9 @@ app.add_middleware(
 # Database configuration
 # DATABASE_URL = "postgresql://user:password@localhost:5432/barberease"
 
-DATABASE_URL = "sqlite:///barber_ease.db"
+DATABASE_URL = os.getenv("DB_URL", "sqlite:///barber_ease.db")
+print(DATABASE_URL)
+
 engine = create_engine(DATABASE_URL, echo=True)
 SQLModel.metadata.create_all(engine)
 

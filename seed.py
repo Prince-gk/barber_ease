@@ -2,9 +2,14 @@ from sqlmodel import Session, create_engine, select
 from main import User, Service, Appointment, Review, Availability
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
+from dotenv import load_dotenv
+import os
 
-# Database configuration
-DATABASE_URL = "sqlite:///barber_ease.db"
+load_dotenv()
+
+DATABASE_URL = os.getenv("DB_URL", "sqlite:///barber_ease.db")
+print(DATABASE_URL)
+
 engine = create_engine(DATABASE_URL, echo=True)
 
 # Password hashing
