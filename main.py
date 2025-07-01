@@ -56,6 +56,7 @@ class User(SQLModel, table=True):
     email: str = Field(unique=True, index=True)
     hashed_password: str
     is_barber: bool = False
+    date_created: datetime|None = None
     full_name: str
     bio: Optional[str] = None
 
