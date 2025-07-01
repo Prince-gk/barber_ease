@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cd client || exit 1
+# check if node is installed
+if ! command -v node &> /dev/null; then
+    echo "Node.js is not installed. Please install Node.js to continue."
+    exit 1
+fi
+
+npm install && npm run dev
