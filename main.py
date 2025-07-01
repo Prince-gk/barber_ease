@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from sqlmodel import SQLModel, Field, Session, create_engine, select
+from sqlmodel import SQLModel, Field, Session, create_engine, select, MetaData
 from typing import Optional, List
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
@@ -29,8 +29,10 @@ app.add_middleware(
 
 # Database configuration
 # DATABASE_URL = "postgresql://user:password@localhost:5432/barberease"
+
 DATABASE_URL = "sqlite:///barber_ease.db"
 engine = create_engine(DATABASE_URL, echo=True)
+SQLModel.metadata.create_all(engine)
 
 # JWT configuration
 SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key")
